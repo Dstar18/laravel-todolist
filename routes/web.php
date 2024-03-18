@@ -18,4 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/produk', [\App\Http\Controllers\ProdukController::class, 'gets']);
-Route::get('/produk/{idProduk}', [\App\Http\Controllers\ProdukController::class, 'get']);
+Route::get('/produk/detail/{idProduk}', [\App\Http\Controllers\ProdukController::class, 'get']);
+Route::get('/produk/insert', [\App\Http\Controllers\ProdukController::class, 'insert']);
+Route::get('/produk/update/{idProduk}', [\App\Http\Controllers\ProdukController::class, 'update']);
+Route::get('/produk/delete/{idProduk}', [\App\Http\Controllers\ProdukController::class, 'delete']);

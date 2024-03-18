@@ -27,11 +27,29 @@ class ProdukController extends Controller{
     public function insert(){
         $post = array(
             'kategoriID'    => 1,
-            'nama'          => 'Nugget ayam',
-            'jumlah'        => 7,
-            'satuan'        => 'pack',
-            'harga'         => '50rb',
-            // 'created_at'    => date('Y-m-d Hi:')
+            'nama'          => 'Beras 5kg',
+            'jumlah'        => 50,
+            'satuan'        => 'karung',
+            'harga'         => '60 rb',
+            'created_at'    => date("Y-m-d H:i:s")
         );
+        $query = DB::table('tb_produk')->insertGetId($post);
+
+        echo json_encode($query);
+    }
+
+    public function update($id){
+        $post = array(
+            'nama'          => 'Seblak pedas',
+            'update_at'    => date("Y-m-d H:i:s")
+        );
+        $query = DB::table('tb_produk')->where('idProduk',$id)->update($post);
+
+        echo json_encode($query);
+    }
+
+    public function delete($id){
+        $query = DB::table('tb_produk')->where('idProduk',$id)->delete();
+        echo json_encode($query);
     }
 }
