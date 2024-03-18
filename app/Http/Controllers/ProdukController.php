@@ -4,15 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Helpers\UtilHelper;
 
 class ProdukController extends Controller{
+
+    public function testhelper(){
+        $data = UtilHelper::to_obj();
+        return $data;
+    }
     
     public function gets(){
         $query = DB::table('tb_produk')
                 ->join('tb_kategori', 'tb_kategori.idKategori', '=', 'tb_produk.kategoriID')
                 ->get();
 
-        echo json_encode($query);
+        return ([
+            "resultCode"    => 200,
+            "result"        => $query
+        ]);
     }
 
     public function get($id){

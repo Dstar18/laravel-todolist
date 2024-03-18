@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/testhelper', [\App\Http\Controllers\ProdukController::class, 'testhelper']);
+
 Route::get('/produk', [\App\Http\Controllers\ProdukController::class, 'gets']);
 Route::get('/produk/detail/{idProduk}', [\App\Http\Controllers\ProdukController::class, 'get']);
 Route::get('/produk/insert', [\App\Http\Controllers\ProdukController::class, 'insert']);
