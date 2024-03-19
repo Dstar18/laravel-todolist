@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Helpers\UtilHelper;
+use App\Models\Produk_model;
 
 class ProdukController extends Controller{
 
@@ -14,51 +15,79 @@ class ProdukController extends Controller{
     }
     
     public function gets(){
-        $query = DB::table('tb_produk')
-                ->join('tb_kategori', 'tb_kategori.idKategori', '=', 'tb_produk.kategoriID')
-                ->get();
-
-        return ([
-            "resultCode"    => 200,
-            "result"        => $query
-        ]);
+        $produk = Produk_model::gets();
+        
+        return $produk;
     }
 
-    public function get($id){
-        $query = DB::table('tb_produk')
-                ->where('idProduk',$id)
-                ->join('tb_kategori', 'tb_kategori.idKategori', '=', 'tb_produk.kategoriID')
-                ->get();
+    public function getID($id){
+        $produk = Produk_model::getID($id);
+        if($produk->isNotEmpty()){
+            return $produk;
+        }else{
+            return ([
+                'resultCode'    => 404,
+                'message'       => 'Data tidak ditemukan !!'
+            ]);
+        }
 
-        echo json_encode($query);
     }
 
     public function insert(){
         $post = array(
-            'kategoriID'    => 1,
-            'nama'          => 'Beras 5kg',
-            'jumlah'        => 50,
-            'satuan'        => 'karung',
-            'harga'         => '60 rb',
+            'kategoriID'    => 2,
+            'nama'          => 'Nugget Siap Makan',
+            'jumlah'        => 30,
+            'satuan'        => 'pcs',
+            'harga'         => '30 ribu',
             'created_at'    => date("Y-m-d H:i:s")
         );
-        $query = DB::table('tb_produk')->insertGetId($post);
+        $getInsertID = Produk_model::insert($post);
 
-        echo json_encode($query);
+        return ([
+            'resultCode'    => 200,
+            'message'       => 'Data berhasil ditambahkan',
+            'insertID'      => $getInsertID
+        ]);
     }
 
     public function update($id){
-        $post = array(
-            'nama'          => 'Seblak pedas',
-            'update_at'    => date("Y-m-d H:i:s")
-        );
-        $query = DB::table('tb_produk')->where('idProduk',$id)->update($post);
-
-        echo json_encode($query);
+        $cekID = Produk_model::getID($id);
+        if($cekID->isNotEmpty()){
+            $post = array(
+                'idProduk'      => $id,
+                'nama'          => 'Smart TV 2',
+                'update_at'     => date("Y-m-d H:i:s")
+            );
+            $result = Produk_model::updateByID($post);
+            return ([
+                'resultCode'    => 200,
+                'message'       => 'Data berhasil diupdate',
+                'result'        => $result,
+                'cekid'         => $cekID
+            ]);
+        }else{
+            return ([
+                'resultCode'    => 404,
+                'message'       => 'Data tidak ditemukan !!'
+            ]);
+        }
     }
 
     public function delete($id){
-        $query = DB::table('tb_produk')->where('idProduk',$id)->delete();
-        echo json_encode($query);
+        $cekID = Produk_model::getID($id);
+        if($cekID->isNotEmpty()){
+            $result = Produk_model::deleteByID($id);
+            return ([
+                'resultCode'    => 200,
+                'message'       => 'Data berhasil dihapus',
+                'result'        => $result
+            ]);
+        }else{
+            return ([
+                'resultCOde'    => 404,
+                'message'       => 'Data tidak ditemukan !!'
+            ]);
+        }
     }
 }

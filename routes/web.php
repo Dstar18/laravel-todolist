@@ -18,9 +18,11 @@ Route::get('/', function () {
 });
 
 Route::get('/testhelper', [\App\Http\Controllers\ProdukController::class, 'testhelper']);
+Route::get('/getseloquent', [\App\Http\Controllers\ProdukController::class, 'getseloquent']);
+
 
 Route::get('/produk', [\App\Http\Controllers\ProdukController::class, 'gets']);
-Route::get('/produk/detail/{idProduk}', [\App\Http\Controllers\ProdukController::class, 'get']);
+Route::get('/produk/detail/{idProduk}', [\App\Http\Controllers\ProdukController::class, 'getID']);
 Route::get('/produk/insert', [\App\Http\Controllers\ProdukController::class, 'insert']);
 Route::get('/produk/update/{idProduk}', [\App\Http\Controllers\ProdukController::class, 'update']);
 Route::get('/produk/delete/{idProduk}', [\App\Http\Controllers\ProdukController::class, 'delete']);
