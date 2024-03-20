@@ -16,8 +16,8 @@ class ProdukController extends Controller{
     
     public function gets(){
         $produk = Produk_model::gets();
-        
-        return $produk;
+        $message = "success";
+        return view('produk.produk_view',['produk' => $produk],['message' => $message]);
     }
 
     public function getID($id){

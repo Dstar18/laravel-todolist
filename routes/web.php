@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProdukController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/testhelper', [\App\Http\Controllers\ProdukController::class, 'testhelper']);
-Route::get('/getseloquent', [\App\Http\Controllers\ProdukController::class, 'getseloquent']);
+Route::get('/testhelper', [ProdukController::class, 'testhelper']);
+Route::get('/getseloquent', [ProdukController::class, 'getseloquent']);
 
 
-Route::get('/produk', [\App\Http\Controllers\ProdukController::class, 'gets']);
-Route::get('/produk/detail/{idProduk}', [\App\Http\Controllers\ProdukController::class, 'getID']);
-Route::get('/produk/insert', [\App\Http\Controllers\ProdukController::class, 'insert']);
-Route::get('/produk/update/{idProduk}', [\App\Http\Controllers\ProdukController::class, 'update']);
-Route::get('/produk/delete/{idProduk}', [\App\Http\Controllers\ProdukController::class, 'delete']);
+Route::get('/produk', [ProdukController::class, 'gets']);
+Route::get('/produk/detail/{idProduk}', [ProdukController::class, 'getID']);
+Route::get('/produk/insert', [ProdukController::class, 'insert']);
+Route::get('/produk/update/{idProduk}', [ProdukController::class, 'update']);
+Route::get('/produk/delete/{idProduk}', [ProdukController::class, 'delete']);
