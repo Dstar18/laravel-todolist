@@ -14,15 +14,15 @@ use App\Http\Controllers\ProdukController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/testhelper', [ProdukController::class, 'testhelper']);
 Route::get('/getseloquent', [ProdukController::class, 'getseloquent']);
 
 
-Route::get('/produk', [ProdukController::class, 'gets']);
+Route::get('/', [ProdukController::class, 'gets']);
 Route::get('/produk/detail/{idProduk}', [ProdukController::class, 'getID']);
 Route::get('/produk/insert', [ProdukController::class, 'insert']);
 Route::get('/produk/update/{idProduk}', [ProdukController::class, 'update']);

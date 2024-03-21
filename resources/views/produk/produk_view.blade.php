@@ -1,43 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url('assets/plugins/fontawesome-free/css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ url('assets/dist/css/adminlte.min.css?v=3.2.0') }}">
-    <link rel="stylesheet" href="{{ url('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ url('assets/custom/styleButton.css') }}">
+    @include('_partials.head')
     <title>Laravel | Todolist</title>
 </head>
 <body class="hold-transition layout-top-nav">
     <div class="wrapper">
 
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
-            <div class="container">
-                <a href="#" class="navbar-brand">
-                    <img src="{{ url('assets/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                    <span class="brand-text font-weight-light">Todolist</span>
-                </a>
-                <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse order-3" id="navbarCollapse">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Home</a>
-                        </li>
-                    </ul>
-                </div>
-                <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link" data-widget="fullscreen" role="button">
-                            <i class="fas fa-expand-arrows-alt"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        @include('_partials.navbar')
         <!-- Navbar -->
         
         <div class="content-wrapper">
@@ -53,10 +24,36 @@
                     <div class="row">
                         <div class="col-12 col-md-12 col-lg-12 order-2 order-md-1">
                             <div class="card">
-                                <div class="card-body">
-                                    
-                                    
-                                    <p>TESSSTTT</p>
+                                <div class="card-header">
+                                    <h3 class="card-title">DATA PRODUK</h3>
+                                </div>
+                                <div class="card-body" style="font-size: 14px">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Nama Produk</th>
+                                                <th>Jumlah</th>
+                                                <th>Satuan</th>
+                                                <th>Harga</th>
+                                                <th>Kategori</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($produk as $row)
+                                                <tr>
+                                                    <td>{{ $row->idProduk }}</td>
+                                                    <td>{{ $row->nama }}</td>
+                                                    <td>{{ $row->jumlah }}</td>
+                                                    <td>{{ $row->satuan }}</td>
+                                                    <td>{{ $row->harga }}</td>
+                                                    <td>{{ $row->kategori }}</td>
+                                                    <td>Edit | Hapus</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -65,8 +62,9 @@
             </div>
         </div>
     </div>
-    <script src="{{url('assets/plugins/jquery/jquery.min.js')}}"></script>
-    <script src="{{url('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{url('assets/dist/js/adminlte.min.js?v=3.2.0')}}"></script>
+    <!-- JS -->
+    @include('_partials.js')
+    <!-- JS -->
+    
 </body>
 </html>
