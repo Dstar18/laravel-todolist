@@ -26,6 +26,13 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">DATA PRODUK</h3>
+                                    <div class="card-tools">
+                                        <a href="/produk/insert">
+                                            <button type="button" class="btn btn-sm btn-block btn-primary" title="Tambah Produk">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="card-body" style="font-size: 14px">
                                     <table id="example1" class="table table-bordered table-striped">
@@ -49,7 +56,14 @@
                                                     <td>{{ $row->satuan }}</td>
                                                     <td>{{ $row->harga }}</td>
                                                     <td>{{ $row->kategori }}</td>
-                                                    <td>Edit | Hapus</td>
+                                                    <td class="project-state text-center">
+                                                        <a href="/produk/detail/{{$row->idProduk}}" class="btn btn-sm btn-info" title="Edit">
+                                                            <i class="fas fa-pencil-alt"></i>
+                                                        </a>
+                                                        <a href="/produk/delete/{{$row->idProduk}}" class="btn btn-sm btn-danger" onclick="return confirm('Anda yakin mau menghapus data {{$row->nama}} ?')" title="Hapus">
+                                                            <i class="fas fa-trash"></i>
+                                                        </a>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Helpers\UtilHelper;
 use App\Models\Produk_model;
+use App\Models\Kategori_model;
 
 class ProdukController extends Controller{
 
@@ -33,21 +34,34 @@ class ProdukController extends Controller{
 
     }
 
-    public function insert(){
-        $post = array(
-            'kategoriID'    => 2,
-            'nama'          => 'Nugget Siap Makan',
-            'jumlah'        => 30,
-            'satuan'        => 'pcs',
-            'harga'         => '30 ribu',
-            'created_at'    => date("Y-m-d H:i:s")
-        );
-        $getInsertID = Produk_model::insert($post);
+    public function insert(Request $request){
+        if ($request->isMethod('post')) {
+            // $post = array(
+            //     'kategoriID'    => 2,
+            //     'nama'          => 'Nugget Siap Makan',
+            //     'jumlah'        => 30,
+            //     'satuan'        => 'pcs',
+            //     'harga'         => '30 ribu',
+            //     'created_at'    => date("Y-m-d H:i:s")
+            // );
+            // $getInsertID = Produk_model::insert($post);
+    
+            return ([
+                'resultCode'    => 200,
+                'message'       => 'Data berhasil ditambahkan',
+                'insertID'      => $request
+            ]);
+        }
+        $kategori = Kategori_model::gets();
+        return view('produk.produk_insert',['kategori' => $kategori]);
+    }
 
+    public function store(Request $request){
+        // KARENA ROUTING NYA POST JADI TIDAK DAPAT MENAMPILKAN DATA, HANYA EKSEKUSI
         return ([
             'resultCode'    => 200,
             'message'       => 'Data berhasil ditambahkan',
-            'insertID'      => $getInsertID
+            'insertID'      => $request
         ]);
     }
 
