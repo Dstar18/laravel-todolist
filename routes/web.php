@@ -24,7 +24,11 @@ Route::get('/getseloquent', [ProdukController::class, 'getseloquent']);
 
 Route::get('/', [ProdukController::class, 'gets']);
 Route::get('/produk/detail/{idProduk}', [ProdukController::class, 'getID']);
+
 Route::get('/produk/insert_view', [ProdukController::class, 'insert_view']);
 Route::post('/produk/insert', [ProdukController::class, 'insert']);
-Route::get('/produk/update/{idProduk}', [ProdukController::class, 'update']);
+
+Route::get('/produk/update_view/{idProduk}', [ProdukController::class, 'update_view']);
+// Route::get('/produk/update/{idProduk}', [ProdukController::class, 'update']);
+
 Route::get('/produk/delete/{idProduk}', [ProdukController::class, 'delete']);

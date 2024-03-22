@@ -48,24 +48,24 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($produk as $row)
+                                            <?php foreach($produk as $row){?>
                                                 <tr>
-                                                    <td>{{ $row->idProduk }}</td>
-                                                    <td>{{ $row->nama }}</td>
-                                                    <td>{{ $row->jumlah }}</td>
-                                                    <td>{{ $row->satuan }}</td>
-                                                    <td>{{ $row->harga }}</td>
-                                                    <td>{{ $row->kategori }}</td>
+                                                    <td><?=$row->idProduk?></td>
+                                                    <td><?=$row->nama ?></td>
+                                                    <td><?=$row->jumlah ?></td>
+                                                    <td><?=$row->satuan ?></td>
+                                                    <td><?=$row->harga ?></td>
+                                                    <td><?=$row->kategori ?></td>
                                                     <td class="project-state text-center">
-                                                        <a href="/produk/detail/{{$row->idProduk}}" class="btn btn-sm btn-info" title="Edit">
+                                                        <a href="/produk/update_view/<?=$row->idProduk?>" class="btn btn-sm btn-info" title="Edit">
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </a>
-                                                        <a href="/produk/delete/{{$row->idProduk}}" class="btn btn-sm btn-danger" onclick="return confirm('Anda yakin mau menghapus data {{$row->nama}} ?')" title="Hapus">
+                                                        <a href="/produk/delete/<?=$row->idProduk?>" class="btn btn-sm btn-danger" onclick="return confirm('Anda yakin mau menghapus data {{$row->nama?> ?')" title="Hapus">
                                                             <i class="fas fa-trash"></i>
                                                         </a>
                                                     </td>
                                                 </tr>
-                                            @endforeach
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>

@@ -16,16 +16,18 @@ class ProdukController extends Controller{
     }
     
     public function gets($response=false){
-        $produk = Produk_model::gets();
-        $message = $response;
+        $result['produk'] = Produk_model::gets();
+        $result['message'] = $response;
         
-        return view('produk.produk_view',['produk' => $produk],['message' => $message]);
+        return view('produk.produk_view',$result);
     }
 
     public function getID($id){
         $produk = Produk_model::getID($id);
         if($produk->isNotEmpty()){
-            return $produk;
+            $result['produk'] = $produk;
+
+            return $result;
         }else{
             return ([
                 'resultCode'    => 404,
@@ -36,9 +38,9 @@ class ProdukController extends Controller{
     }
 
     public function insert_view(){
-        $kategori = Kategori_model::gets();
+        $result['kategori'] = Kategori_model::gets();
 
-        return view('produk.produk_insert',['kategori' => $kategori]);
+        return view('produk.produk_insert',$result);
     }
 
     public function insert(Request $request){
@@ -55,6 +57,21 @@ class ProdukController extends Controller{
         return redirect('/');
     }
 
+    public function update_view($id){
+        $produk = Produk_model::getID($id);
+        if($produk->isNotEmpty()){
+            $result['produk'] = $produk;
+            $result['kategori'] = Kategori_model::gets();
+
+            return view('produk.produk_update', $result);
+        }else{
+            return ([
+                'resultCode'    => 404,
+                'message'       => 'Data tidak ditemukan !!'
+            ]);
+        }
+    }
+    
     public function update($id){
         $cekID = Produk_model::getID($id);
         if($cekID->isNotEmpty()){

@@ -40,31 +40,31 @@
                                         <div class="form-group row">
                                             <label for="" class="col-sm-3 col-form-label">Nama Produk</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="nama" required>
+                                                <input type="text" style="font-size: 14px" class="form-control" name="nama" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="" class="col-sm-3 col-form-label">Jumlah</label>
                                             <div class="col-sm-9">
-                                                <input type="number" class="form-control" name="jumlah" required>
+                                                <input type="number" style="font-size: 14px" class="form-control" name="jumlah" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="" class="col-sm-3 col-form-label">Satuan</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="satuan" required>
+                                                <input type="text" style="font-size: 14px" class="form-control" name="satuan" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="" class="col-sm-3 col-form-label">Harga</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="harga" required>
+                                                <input type="text" style="font-size: 14px" class="form-control" name="harga" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="" class="col-sm-3 col-form-label">Kategori</label>
                                             <div class="col-sm-9">
-                                                <select name="kategoriID" id="kategoriID" class="form-control selectric" required>
+                                                <select name="kategoriID" id="kategoriID" class="form-control selectric" style="font-size: 14px" required>
                                                     <option value="">-- Pilih --</option>
                                                     <?php if($kategori){?>
                                                         <?php foreach ($kategori as $row) {?>
@@ -74,7 +74,9 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
