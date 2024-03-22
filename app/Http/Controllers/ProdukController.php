@@ -15,9 +15,10 @@ class ProdukController extends Controller{
         return $data;
     }
     
-    public function gets(){
+    public function gets($response=false){
         $produk = Produk_model::gets();
-        $message = "success";
+        $message = $response;
+        
         return view('produk.produk_view',['produk' => $produk],['message' => $message]);
     }
 
@@ -34,35 +35,24 @@ class ProdukController extends Controller{
 
     }
 
-    public function insert(Request $request){
-        if ($request->isMethod('post')) {
-            // $post = array(
-            //     'kategoriID'    => 2,
-            //     'nama'          => 'Nugget Siap Makan',
-            //     'jumlah'        => 30,
-            //     'satuan'        => 'pcs',
-            //     'harga'         => '30 ribu',
-            //     'created_at'    => date("Y-m-d H:i:s")
-            // );
-            // $getInsertID = Produk_model::insert($post);
-    
-            return ([
-                'resultCode'    => 200,
-                'message'       => 'Data berhasil ditambahkan',
-                'insertID'      => $request
-            ]);
-        }
+    public function insert_view(){
         $kategori = Kategori_model::gets();
+
         return view('produk.produk_insert',['kategori' => $kategori]);
     }
 
-    public function store(Request $request){
-        // KARENA ROUTING NYA POST JADI TIDAK DAPAT MENAMPILKAN DATA, HANYA EKSEKUSI
-        return ([
-            'resultCode'    => 200,
-            'message'       => 'Data berhasil ditambahkan',
-            'insertID'      => $request
-        ]);
+    public function insert(Request $request){
+        $data = array(
+            'kategoriID'    => $request->kategoriID,
+            'nama'          => $request->nama,
+            'jumlah'        => $request->jumlah,
+            'satuan'        => $request->satuan,
+            'harga'         => $request->harga,
+            'created_at'    => date("Y-m-d H:i:s")
+        );
+        $getInsertID = Produk_model::insert($data);
+        
+        return redirect('/');
     }
 
     public function update($id){
@@ -92,11 +82,7 @@ class ProdukController extends Controller{
         $cekID = Produk_model::getID($id);
         if($cekID->isNotEmpty()){
             $result = Produk_model::deleteByID($id);
-            return ([
-                'resultCode'    => 200,
-                'message'       => 'Data berhasil dihapus',
-                'result'        => $result
-            ]);
+            return redirect('/');
         }else{
             return ([
                 'resultCOde'    => 404,

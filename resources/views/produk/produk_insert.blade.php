@@ -35,7 +35,8 @@
                                     </div>
                                 </div>
                                 <div class="card-body" style="font-size: 14px">
-                                    <form action="/produk/store" method="post">
+                                    <form action="/produk/insert" method="post">
+                                        {{ csrf_field() }}
                                         <div class="form-group row">
                                             <label for="" class="col-sm-3 col-form-label">Nama Produk</label>
                                             <div class="col-sm-9">
@@ -63,7 +64,7 @@
                                         <div class="form-group row">
                                             <label for="" class="col-sm-3 col-form-label">Kategori</label>
                                             <div class="col-sm-9">
-                                                <select name="idKategori" id="idKategori" class="form-control selectric" required>
+                                                <select name="kategoriID" id="kategoriID" class="form-control selectric" required>
                                                     <option value="">-- Pilih --</option>
                                                     <?php if($kategori){?>
                                                         <?php foreach ($kategori as $row) {?>
@@ -73,7 +74,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                                     </form>
                                 </div>
                             </div>

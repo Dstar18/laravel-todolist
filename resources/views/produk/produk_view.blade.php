@@ -27,7 +27,7 @@
                                 <div class="card-header">
                                     <h3 class="card-title">DATA PRODUK</h3>
                                     <div class="card-tools">
-                                        <a href="/produk/insert">
+                                        <a href="/produk/insert_view">
                                             <button type="button" class="btn btn-sm btn-block btn-primary" title="Tambah Produk">
                                                 <i class="fas fa-plus"></i>
                                             </button>
