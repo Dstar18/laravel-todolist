@@ -16,6 +16,11 @@
         </div>
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
             <li class="nav-item">
+                <a class="nav-link">{{ App\Helpers\UtilHelper::to_obj() }}</a>
+            </li>
+        </ul>
+        <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+            <li class="nav-item">
                 <a href="#" class="nav-link" data-widget="fullscreen" role="button">
                     <i class="fas fa-expand-arrows-alt"></i>
                 </a>

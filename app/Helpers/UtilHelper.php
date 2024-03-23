@@ -4,7 +4,7 @@ namespace App\Helpers;
 class UtilHelper{
 
     function to_obj(){
-        $data = "ini data helper";
+        $data = "Dedi Bintang";
         return $data;
     }
 }

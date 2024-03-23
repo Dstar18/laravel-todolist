@@ -27,7 +27,7 @@
                                 <div class="card-header">
                                     <h3 class="card-title">DATA PRODUK</h3>
                                     <div class="card-tools">
-                                        <a href="/produk/insert_view">
+                                        <a href="/produk/insert">
                                             <button type="button" class="btn btn-sm btn-block btn-primary" title="Tambah Produk">
                                                 <i class="fas fa-plus"></i>
                                             </button>
@@ -57,7 +57,7 @@
                                                     <td><?=$row->harga ?></td>
                                                     <td><?=$row->kategori ?></td>
                                                     <td class="project-state text-center">
-                                                        <a href="/produk/update_view/<?=$row->idProduk?>" class="btn btn-sm btn-info" title="Edit">
+                                                        <a href="/produk/update/<?=$row->idProduk?>" class="btn btn-sm btn-info" title="Edit">
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </a>
                                                         <a href="/produk/delete/<?=$row->idProduk?>" class="btn btn-sm btn-danger" onclick="return confirm('Anda yakin mau menghapus data {{$row->nama?> ?')" title="Hapus">

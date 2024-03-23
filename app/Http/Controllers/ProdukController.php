@@ -34,57 +34,55 @@ class ProdukController extends Controller{
                 'message'       => 'Data tidak ditemukan !!'
             ]);
         }
-
-    }
-
-    public function insert_view(){
-        $result['kategori'] = Kategori_model::gets();
-
-        return view('produk.produk_insert',$result);
     }
 
     public function insert(Request $request){
-        $data = array(
-            'kategoriID'    => $request->kategoriID,
-            'nama'          => $request->nama,
-            'jumlah'        => $request->jumlah,
-            'satuan'        => $request->satuan,
-            'harga'         => $request->harga,
-            'created_at'    => date("Y-m-d H:i:s")
-        );
-        $getInsertID = Produk_model::insert($data);
-        
-        return redirect('/');
-    }
-
-    public function update_view($id){
-        $produk = Produk_model::getID($id);
-        if($produk->isNotEmpty()){
-            $result['produk'] = $produk;
-            $result['kategori'] = Kategori_model::gets();
-
-            return view('produk.produk_update', $result);
+        if ($request->isMethod('post')) {
+            $data = array(
+                'kategoriID'    => $request->kategoriID,
+                'nama'          => $request->nama,
+                'jumlah'        => $request->jumlah,
+                'satuan'        => $request->satuan,
+                'harga'         => $request->harga,
+                'created_at'    => date("Y-m-d H:i:s")
+            );
+            $getInsertID = Produk_model::insert($data);
+            
+            return redirect('/');
         }else{
-            return ([
-                'resultCode'    => 404,
-                'message'       => 'Data tidak ditemukan !!'
-            ]);
+            $result['kategori'] = Kategori_model::gets();
+            return view('produk.produk_insert',$result);
         }
     }
-    
-    public function update(Request $request){
-        $data = array(
-            'idProduk'      => $request->idProduk,
-            'kategoriID'    => $request->kategoriID,
-            'nama'          => $request->nama,
-            'jumlah'        => $request->jumlah,
-            'satuan'        => $request->satuan,
-            'harga'         => $request->harga,
-            'update_at'     => date("Y-m-d H:i:s")
-        );
-        $result = Produk_model::updateByID($data);
-        
-        return redirect('/');
+
+    public function update(Request $request, $id){
+        if ($request->isMethod('post')) {
+            $data = array(
+                'idProduk'      => $request->idProduk,
+                'kategoriID'    => $request->kategoriID,
+                'nama'          => $request->nama,
+                'jumlah'        => $request->jumlah,
+                'satuan'        => $request->satuan,
+                'harga'         => $request->harga,
+                'update_at'     => date("Y-m-d H:i:s")
+            );
+            $result = Produk_model::updateByID($data);
+            
+            return redirect('/');
+        }else{
+            $produk = Produk_model::getID($id);
+            if($produk->isNotEmpty()){
+                $result['produk'] = $produk;
+                $result['kategori'] = Kategori_model::gets();
+
+                return view('produk.produk_update', $result);
+            }else{
+                return ([
+                    'resultCode'    => 404,
+                    'message'       => 'Data tidak ditemukan !!'
+                ]);
+            }    
+        }
     }
 
     public function delete($id){

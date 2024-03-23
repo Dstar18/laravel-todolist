@@ -35,9 +35,9 @@
                                     </div>
                                 </div>
                                 <div class="card-body" style="font-size: 14px">
-                                    <form action="/produk/update" method="post">
+                                    <?php foreach($produk as $rowProduk){?>
+                                    <form action="/produk/update/<?=$rowProduk->idProduk?>" method="post">
                                         {{ csrf_field() }}
-                                        <?php foreach($produk as $rowProduk){?>
                                             <input type="hidden" style="font-size: 14px" class="form-control" name="idProduk" value="<?=$rowProduk->idProduk?>" readonly>
                                             <div class="form-group row">
                                                 <label for="" class="col-sm-3 col-form-label">Nama Produk</label>
@@ -79,8 +79,8 @@
                                             <div class="text-right">
                                                 <button type="submit" class="btn btn-sm btn-primary">Save</button>
                                             </div>
-                                        <?php }?>
                                     </form>
+                                    <?php }?>
                                 </div>
                             </div>
                         </div>
