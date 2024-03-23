@@ -36,7 +36,9 @@
                                 </div>
                                 <div class="card-body" style="font-size: 14px">
                                     <form action="/produk/update" method="post">
+                                        {{ csrf_field() }}
                                         <?php foreach($produk as $rowProduk){?>
+                                            <input type="hidden" style="font-size: 14px" class="form-control" name="idProduk" value="<?=$rowProduk->idProduk?>" readonly>
                                             <div class="form-group row">
                                                 <label for="" class="col-sm-3 col-form-label">Nama Produk</label>
                                                 <div class="col-sm-9">
@@ -68,14 +70,14 @@
                                                         <option value="">-- Pilih --</option>
                                                         <?php if($kategori){?>
                                                             <?php foreach ($kategori as $rowKategori) {?>
-                                                                <option value="<?=$rowKategori->idKategori?>"><?=$rowKategori->kategori?></option>
+                                                                <option value="<?=$rowKategori->idKategori?>" <?=$rowKategori->idKategori == $rowProduk->idKategori ? 'selected' : ''?>><?=$rowKategori->kategori?></option>
                                                             <?php }?>
                                                         <?php }?>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="text-right">
-                                                <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+                                                <button type="submit" class="btn btn-sm btn-primary">Save</button>
                                             </div>
                                         <?php }?>
                                     </form>

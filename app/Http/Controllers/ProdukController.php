@@ -72,27 +72,19 @@ class ProdukController extends Controller{
         }
     }
     
-    public function update($id){
-        $cekID = Produk_model::getID($id);
-        if($cekID->isNotEmpty()){
-            $post = array(
-                'idProduk'      => $id,
-                'nama'          => 'Smart TV 2',
-                'update_at'     => date("Y-m-d H:i:s")
-            );
-            $result = Produk_model::updateByID($post);
-            return ([
-                'resultCode'    => 200,
-                'message'       => 'Data berhasil diupdate',
-                'result'        => $result,
-                'cekid'         => $cekID
-            ]);
-        }else{
-            return ([
-                'resultCode'    => 404,
-                'message'       => 'Data tidak ditemukan !!'
-            ]);
-        }
+    public function update(Request $request){
+        $data = array(
+            'idProduk'      => $request->idProduk,
+            'kategoriID'    => $request->kategoriID,
+            'nama'          => $request->nama,
+            'jumlah'        => $request->jumlah,
+            'satuan'        => $request->satuan,
+            'harga'         => $request->harga,
+            'update_at'     => date("Y-m-d H:i:s")
+        );
+        $result = Produk_model::updateByID($data);
+        
+        return redirect('/');
     }
 
     public function delete($id){
