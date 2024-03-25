@@ -4,7 +4,7 @@ namespace App\Helpers;
 class UtilHelper{
 
     function to_obj(){
-        $data = "Dedi Bintang";
+        $data = "Laravel 8";
         return $data;
     }
 }
