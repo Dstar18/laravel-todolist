@@ -46,9 +46,10 @@ class ProdukController extends Controller{
                 'harga'         => $request->harga,
                 'created_at'    => date("Y-m-d H:i:s")
             );
-            $getInsertID = Produk_model::insert($data);
+            $response['getInsertID'] = Produk_model::insert($data);
+            $response['result'] = "Created successfully";
             
-            return redirect('/');
+            return $this->gets($response);
         }else{
             $result['kategori'] = Kategori_model::gets();
             return view('produk.produk_insert',$result);
@@ -66,9 +67,12 @@ class ProdukController extends Controller{
                 'harga'         => $request->harga,
                 'update_at'     => date("Y-m-d H:i:s")
             );
-            $result = Produk_model::updateByID($data);
-            
-            return redirect('/');
+            Produk_model::updateByID($data);
+            $result['message']['result'] = "Update successfully";
+            $result['produk'] = Produk_model::getID($id);
+            $result['kategori'] = Kategori_model::gets();
+
+            return view('produk.produk_update', $result);
         }else{
             $produk = Produk_model::getID($id);
             if($produk->isNotEmpty()){
@@ -77,10 +81,9 @@ class ProdukController extends Controller{
 
                 return view('produk.produk_update', $result);
             }else{
-                return ([
-                    'resultCode'    => 404,
-                    'message'       => 'Data tidak ditemukan !!'
-                ]);
+                $response['error'] = "Data tidak ditemukan !!";
+
+                return $this->gets($response);
             }    
         }
     }
@@ -88,13 +91,11 @@ class ProdukController extends Controller{
     public function delete($id){
         $cekID = Produk_model::getID($id);
         if($cekID->isNotEmpty()){
-            $result = Produk_model::deleteByID($id);
-            return redirect('/');
+            Produk_model::deleteByID($id);
+            $response['result'] = "Delete successfully";
         }else{
-            return ([
-                'resultCOde'    => 404,
-                'message'       => 'Data tidak ditemukan !!'
-            ]);
+            $response['error'] = "Data tidak ditemukan !!";
         }
+        return $this->gets($response);
     }
 }

@@ -3,6 +3,10 @@
 <script src="{{url('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{url('assets/dist/js/adminlte.min.js?v=3.2.0')}}"></script>
 
+<!-- Alert -->
+<script src="{{url('assets/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+<script src="{{url('assets/plugins/toastr/toastr.min.js')}}"></script>
+
 <!-- DATATABLES -->
 <script src="{{url('assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{url('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>

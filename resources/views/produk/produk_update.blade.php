@@ -91,6 +91,23 @@
     </div>
     <!-- JS -->
     @include('_partials.js')
+    <script>
+        // Message
+        $(function(){
+            var Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000
+            });
+            <?php if(isset($message['result'])){ ?>
+                toastr.success('<?php echo $message['result']; ?>')
+            <?php }else if(isset($message['error'])){ ?>
+                toastr.error('<?php echo $message['error']; ?>')
+            <?php } ?>
+        });
+        // Message
+    </script>
     <!-- JS -->
     
 </body>

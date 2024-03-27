@@ -60,7 +60,7 @@
                                                         <a href="/produk/update/<?=$row->idProduk?>" class="btn btn-sm btn-info" title="Edit">
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </a>
-                                                        <a href="/produk/delete/<?=$row->idProduk?>" class="btn btn-sm btn-danger" onclick="return confirm('Anda yakin mau menghapus data {{$row->nama?> ?')" title="Hapus">
+                                                        <a href="/produk/delete/<?=$row->idProduk?>" class="btn btn-sm btn-danger" onclick="return confirm('Anda yakin mau menghapus data <?=$row->nama?> ?')" title="Hapus">
                                                             <i class="fas fa-trash"></i>
                                                         </a>
                                                     </td>
@@ -78,6 +78,23 @@
     </div>
     <!-- JS -->
     @include('_partials.js')
+    <script>
+        // Message
+        $(function(){
+            var Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000
+            });
+            <?php if(isset($message['result'])){ ?>
+                toastr.success('<?php echo $message['result']; ?>')
+            <?php }else if(isset($message['error'])){ ?>
+                toastr.error('<?php echo $message['error']; ?>')
+            <?php } ?>
+        });
+        // Message
+    </script>
     <!-- JS -->
     
 </body>
